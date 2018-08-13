@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleapi2
+  labels:
+    app: simpleapi2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simpleapi
+  template:
+    metadata:
+      labels:
+        app: simpleapi
+    spec:
+      containers:
+      - name: minikube-simpleapi
+        image: minikube-simpleapi:2.0.0
+        ports:
+        - containerPort: 80

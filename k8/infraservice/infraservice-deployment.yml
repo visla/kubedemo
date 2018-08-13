@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infraservice2
+  labels:
+    app: infraservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: infraservice
+  template:
+    metadata:
+      labels:
+        app: infraservice
+    spec:
+      containers:
+      - name: minikube-infraservice
+        image: minikube-infraservice:2.0.0
+        ports:
+        - containerPort: 80

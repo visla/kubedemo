@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: simpleapi
+spec:
+  selector:
+    app: simpleapi
+  ports:
+  - protocol: TCP
+    port: 8095
+    targetPort: 80
+  type: NodePort
+

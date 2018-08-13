@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleapi4
+  labels:
+    app: simpleapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simpleapi
+  template:
+    metadata:
+      labels:
+        app: simpleapi
+      annotations:
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: minikube-simpleapi
+        image: minikube-simpleapi:4.0.1
+        ports:
+        - containerPort: 80
