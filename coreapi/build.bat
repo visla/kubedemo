@@ -1,0 +1,1 @@
+docker build -t minikube-coreapi:%1 .

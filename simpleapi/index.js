@@ -28,13 +28,24 @@ app.get('/user', (req, res) => {
 		url: 'http://minikube-infraservice/verify',
 	}, (err, response, body) => {
 		if (err) {
-			console.log(err);
+			console.log('failed infraservice', err);
 			res.status(500).send('error');
 			return;
 		}
 
-		counter.inc(); 
-		res.status(200).send('user got from infraservice ' + body);	
+		request({
+			method: 'GET',
+			url: "http://minikube-coreapi/api/values/5"
+		}, (err, response, body2) => {
+			if (err) {
+				console.log('failed coreapi', err);
+				res.status(500).send('error');
+				return;
+			}
+
+			counter.inc(); 
+			res.status(200).send('user got from infraservice ' + body + ' and coreapi ' + body2);	
+		});
 	});
 });
 
